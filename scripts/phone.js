@@ -44,7 +44,7 @@ const displayPones=(phones)=>{
                     <div class="card-body">
                       <h2 class="card-title">${phone.phone_name}</h2>
                       <p>If a dog chews shoes whose shoes does he choose?</p>
-                      <div class="card-actions justify-end">
+                      <div onclick="loadPhoneDetail('${phone.slug}')" class="card-actions justify-end">
                         <button class="btn btn-primary">Details</button>
                       </div>
                     </div>
@@ -57,6 +57,47 @@ const displayPones=(phones)=>{
    
      
 }
+
+// load single phone details
+const loadPhoneDetail=async(id)=>{
+  console.log(id)
+  const res=await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+  const data=await res.json();
+  // console.log(data.data)
+  const phone= data.data;
+  displayPhoneDetails(phone)
+}  
+
+// show single phone details by modal
+const displayPhoneDetails=(phone)=>{
+  phoneDetalsMOdal.showModal()
+  const phoneDetailsContainer= document.getElementById('phone-details-container');
+
+  phoneDetailsContainer.innerHTML=`
+
+                
+                      <img class="w-1/3" src="${phone.image}" />
+                    <div class="ml-3">
+                     <h3 class="text-lg font-bold">${phone.name}</h3>
+                <p class="py-4">Release Date:  ${phone.releaseDate}</p>
+                <p class="py-4">Storage:  ${phone.mainFeatures?.storage}</p>
+                <p class="py-4">GPS:  ${phone?.others?.GPS ? phone.others.GPS : 'no gps Found' }</p>
+                <div class="modal-action">
+                 
+
+                  <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                  </form>
+                    
+                    </div>
+                
+                </div>
+  
+  `
+  console.log(phone)
+}
+
 // handle search by search button
 
 const handleSearch=()=>{
