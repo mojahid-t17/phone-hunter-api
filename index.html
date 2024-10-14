@@ -26,15 +26,48 @@
             </svg>
            
           </label>
-          <button onclick="loadPhones()" class="btn btn-info ">Search</button>
+          <button onclick="handleSearch()" class="btn btn-info ">Search</button>
+
+        
 
        </div>
       <!-- phones container -->
        <section class="mt-7">
+          <!-- spinner loader -->
+           <div id="spinner-loader-container" class="text-center hidden">
+            <span class="loading loading-spinner text-primary"></span>
+           </div>
+          <!-- no phone found container -->
+          <div id="no-phone-container" class="text-rose-500 text-center font-bold text-4xl hidden">
+            <h3>No Phone found !! Search Again</h3>
+           </div>
+           <!-- phone container -->
             <div id="phones-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                
             </div>
+
+            <!-- show more button -->
+           <div id="show-more-container" class="text-center my-5 hidden">
+            <button  class="btn btn-info ">Show More</button>
+           </div>
        </section>
+       <!-- more details about phone container -->
+           <div>
+            <!-- Open the modal using ID.showModal() method -->
+<button class="btn" onclick="my_modal_1.showModal()">open modal</button>
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+           </div>
 
     </main>
 
